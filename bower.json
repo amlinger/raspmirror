@@ -1,0 +1,28 @@
+{
+  "name": "RaspMirror",
+  "version": "0.0.1",
+  "homepage": "https://github.com/amlinger/raspmirror",
+  "authors": [
+    "Anton Amlinger <anton.amlinger@gmail.com>"
+  ],
+  "description": "A Flask server for a Raspberry Pi Magic Mirror!",
+  "keywords": [
+    "Magic Mirror",
+    "Raspberry Pi",
+    "Ember.js",
+    "Flask"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "ember": "~1.5.1",
+    "ember-data": "~1.0.0-beta.4",
+    "handlebars": "~2.0.0",
+    "moment": "~2.7.0"
+  },
+  "resolutions": {
+    "handlebars": ">= 1.0.0 < 2.0.0",
+    "jquery": ">= 1.7.0 <= 2.1.0"
+  }
+}

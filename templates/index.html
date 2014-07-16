@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Magic RaspMirror</title>
+        {% assets "css_all" %}
+            <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}"></script>
+        {% endassets %}
+    <head>
+    <body>
+
+        {#
+            Includes all handlebars templates and places them in script tags. 
+            These are passed from the backend, and are all files contained
+            in the templates folder.
+        #}
+        {% block javascript %}  
+            {% for template in handlebars_templates %}
+                <script type="text/x-handlebars" data-template-name="{{ template.name }}">
+                    {{ template.content|safe }}
+                </script>
+            {%- endfor %}
+        {% endblock %}
+        
+        {% assets "js_all" %}
+            <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+        {% endassets %}
+
+    </body>
+</html>
