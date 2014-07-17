@@ -1,9 +1,16 @@
-{{#each model}}
-	<div class="forecast">
-		{{ forecastdate dt }}
-		{{ temp.eve }}
-	</div>
-	<div>{{ weather.main }}</div>
-	<div>{{ weather.description }}</div>
-	<div><img src="http://openweathermap.org/img/w/{{unbound weather.icon }}.png" /></div>
-{{/each}}
+<div id="forecast-wrapper">
+	{{#each model}}
+		<div class="forecast">
+			
+			<span class="info date">
+				{{ forecastdate dt }}
+			</span>
+			<span class="info temperature">
+				{{ mean-temperature temp }} 
+			</span>
+			<span class="info weather-icon">
+				<img {{bind-attr src=weather.icon }} />
+			</span>
+		</div>
+	{{/each}}
+</div>

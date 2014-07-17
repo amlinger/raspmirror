@@ -1,4 +1,4 @@
-var WebsocketRESTAdapter, simpleConvertXML;
+var WebsocketRESTAdapter, simpleConvertXML, weatherMap;
 
 WebsocketRESTAdapter = DS.Adapter.extend({
   defaultSerializer: '-rest',
@@ -45,7 +45,23 @@ WebsocketRESTAdapter = DS.Adapter.extend({
 });
 
 Ember.Handlebars.helper('forecastdate', function(date) {
-  return moment(date).format('dddd');
+  return moment(date).format('dddd').substring(0, 3);
+});
+
+Ember.Handlebars.helper('mean-temperature', function(temps) {
+  var k, v, values;
+  values = (function() {
+    var _results;
+    _results = [];
+    for (k in temps) {
+      v = temps[k];
+      _results.push(v);
+    }
+    return _results;
+  })();
+  return "" + (Math.round((values.reduce(function(l, r) {
+    return l + r;
+  })) / values.length)) + "°";
 });
 
 window.MagicMirror = Ember.Application.create({
@@ -284,14 +300,26 @@ MagicMirror.LocationAdapter = DS.RESTAdapter.extend({
   }
 });
 
-
-/*
-MagicMirror.ForecastView = Ember.View.extend
-    templateName : 'forecast'
-
-MagicMirror.ForecastController = Ember.ArrayController.extend
-    model   : 'forecast'
- */
+weatherMap = {
+  '01d': '2',
+  '02d': '8',
+  '03d': '32',
+  '04d': '41',
+  '09d': '35',
+  '01n': '3',
+  '02n': '9',
+  '03n': '14',
+  '04n': '25',
+  '09n': '18',
+  '10d': '34',
+  '11d': '33',
+  '13d': '39',
+  '50d': '13',
+  '10n': '17',
+  '11n': '15',
+  '13n': '23',
+  '50n': '13'
+};
 
 MagicMirror.Forecast = DS.Model.extend({
   dt: DS.attr('date'),
@@ -310,6 +338,7 @@ MagicMirror.ForecastAdapter = DS.RESTAdapter.extend({
     prepare = function(o) {
       var _ref;
       _ref = [o.dt, o.dt * 1000, o.weather[0]], o.id = _ref[0], o.dt = _ref[1], o.weather = _ref[2];
+      o.weather.icon = "static/images/" + weatherMap[o.weather.icon] + ".svg";
       return o;
     };
     deferred = new Ember.$.Deferred();

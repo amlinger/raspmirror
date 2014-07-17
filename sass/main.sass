@@ -1,5 +1,45 @@
 body 
 	background: black
+	color: 		white
 
-	h1
-		color: white
+
+#forecast-wrapper
+
+	$height: 		40px
+
+	position: 		absolute
+	right:			50px
+	top:			50px
+
+	.forecast
+		
+		clear: 			both
+		font-family: 	'Open Sans', sans-serif
+
+		.info
+			display: 			inline-block
+			float:				left
+			height: 			$height
+			line-height:		$height
+			box-sizing:			border-box	
+
+		.date
+			text-transform:		lowercase
+			width:				60px
+
+		.temperature
+			background:			url(images/temperature.svg) no-repeat left 50%
+			background-size:	20px
+
+			font-size:			20px		
+			font-weight:		bold
+			margin:				0 10px
+			padding-left:		18px
+			width:				70px
+
+		.weather-icon 
+			margin: 2px
+			
+			img
+				height: $height - 4px
+				width: 	$height - 4px
