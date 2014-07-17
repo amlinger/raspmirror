@@ -59,9 +59,9 @@ Ember.Handlebars.helper('mean-temperature', function(temps) {
     }
     return _results;
   })();
-  return "" + (Math.round((values.reduce(function(l, r) {
+  return Math.round((values.reduce(function(l, r) {
     return l + r;
-  })) / values.length)) + "°";
+  })) / values.length);
 });
 
 window.MagicMirror = Ember.Application.create({

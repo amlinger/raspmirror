@@ -1,12 +1,11 @@
 <div id="forecast-wrapper">
 	{{#each model}}
 		<div class="forecast">
-			
 			<span class="info date">
 				{{ forecastdate dt }}
 			</span>
 			<span class="info temperature">
-				{{ mean-temperature temp }} 
+				{{ mean-temperature temp }}&deg; 
 			</span>
 			<span class="info weather-icon">
 				<img {{bind-attr src=weather.icon }} />
